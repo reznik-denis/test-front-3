@@ -1,14 +1,15 @@
 import { useState } from 'react';
 
 const goods = [
-    { id: 1, good: 'Красный носок' },
-    { id: 2, good: 'Синий носок' },
-    { id: 3, good: 'Бесцветный носок' },]
+    { id: 1, good: 'Красный носок', total: 0},
+    { id: 2, good: 'Синий носок', total: 0},
+    { id: 3, good: 'Бесцветный носок', total: 0},]
 
 function TableBody() {
     const [number, setNumber] = useState(0);
     const [price, setPrice] = useState(0);
     const [total, setTotal] = useState(0);
+    const [good, setGoods] = useState(goods)
 
     const handleChangeNumber = event => {
         setNumber(event.currentTarget.value);
@@ -18,11 +19,17 @@ function TableBody() {
         setPrice(event.currentTarget.value);
     };
     
-    const handleSubmit = event => {
+    const handleSubmit = event  => {
         event.preventDefault();
-        setTotal(number * price);
+        if (number !== 0 && price !== 0) {
+            setTotal(number * price)
+        }
+        
         reset();
+        // goods.find((good) => { if (good.id === id) {return good.total = total}})
     }
+
+    
     
     const reset = () => {
         setPrice(0);
@@ -30,7 +37,7 @@ function TableBody() {
     };
 
     return (<tbody>
-        {goods.map(({ id, good }) => (
+        {good.map(({ id, good, total }) => (
             <tr key={id} >
                 <td className="textAlign">{good}</td>
                 <td>
