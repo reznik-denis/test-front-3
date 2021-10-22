@@ -23,7 +23,7 @@ table th {
   color: white;
 }
 
-table tr:nth-child(odd) {
+table tr:nth-child(even) {
   background-color: rgb(238, 238, 238);
 }
 
