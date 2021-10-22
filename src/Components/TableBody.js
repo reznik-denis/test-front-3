@@ -21,11 +21,13 @@ function TableBody() {
     const handleSubmit = event => {
         event.preventDefault();
         setTotal(number * price);
+        reset();
     }
-        // const reset = () => {
-    //     setPrice(0);
-    //     setNumber(0);
-    // };
+    
+    const reset = () => {
+        setPrice(0);
+        setNumber(0);
+    };
 
     return (<tbody>
         {goods.map(({ id, good }) => (
@@ -43,7 +45,7 @@ function TableBody() {
                     </form>
                 </td>
                 <td>
-                    <form>
+                    <form onSubmit={handleSubmit}>
                         <input
                             className="textAlign"
                             type="number"
